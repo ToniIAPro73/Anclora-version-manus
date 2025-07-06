@@ -1,0 +1,40 @@
+{
+  "color": {
+    "primary": { "value": "#006EE6", "comment": "Azul marino Anclora" },
+    "secondary": { "value": "#00B8D9", "comment": "Turquesa Anclora" },
+    "success": { "value": "#28A745", "comment": "Acción positiva" },
+    "warning": { "value": "#FFC107", "comment": "Alerta / Precaución" },
+    "danger": { "value": "#DC3545", "comment": "Error / Crítico" },
+    "neutral-100": { "value": "#FFFFFF" },
+    "neutral-900": { "value": "#0D0D0D" }
+  },
+  "font": {
+    "family": {
+      "heading": { "value": "\"SF Pro Display\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif" },
+      "body":    { "value": "\"SF Pro Text\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif" }
+    },
+    "size": {
+      "h1": { "value": "32px" },
+      "h2": { "value": "28px" },
+      "h3": { "value": "24px" },
+      "body": { "value": "16px" },
+      "caption": { "value": "12px" }
+    },
+    "weight": {
+      "regular": { "value": "400" },
+      "medium":  { "value": "500" },
+      "bold":    { "value": "700" }
+    },
+    "lineHeight": {
+      "normal": { "value": "1.5" },
+      "heading":{ "value": "1.2" }
+    }
+  },
+  "spacing": {
+    "base": { "value": "8px" },
+    "small": { "value": "8px" },
+    "medium":{ "value": "16px" },
+    "large": { "value": "24px" },
+    "xlarge":{ "value": "32px" }
+  }
+}
