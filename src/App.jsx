@@ -1,7 +1,12 @@
 // src/App.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import logoAnclora from './assets/Logo_Anclora_App.png';
+import SignUpForm from '@/components/Auth/SignUpForm.jsx';
+import LoginForm from '@/components/Auth/LoginForm.jsx';
+import supabase from '@/lib/supabase.js';
+
+export const AuthContext = createContext(null);
 
 // Paleta de colores expandida con 8 colores adicionales
 const colors = {
@@ -1286,11 +1291,11 @@ function Dashboard() {
     minWidth: '150px'
   };
 
-  const sectionsGridStyle = {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gap: '32px'
-  };
+  // const sectionsGridStyle = {
+  //   display: 'grid',
+  //   gridTemplateColumns: '1fr',
+  //   gap: '32px'
+  // };
 
   const sectionStyle = {
     backgroundColor: colors.white,
@@ -2102,15 +2107,35 @@ function Dashboard() {
 }
 
 function App() {
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session)
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [])
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/dashboard-selection" element={<DashboardSelection />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/:audience" element={<Dashboard />} />
-      </Routes>
-    </Router>
+    <AuthContext.Provider value={session}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard-selection" element={<DashboardSelection />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/:audience" element={<Dashboard />} />
+          <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/login" element={<LoginForm />} />
+        </Routes>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 

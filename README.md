@@ -31,11 +31,11 @@ Anclora es una aplicación web de productividad personal que permite a los usuar
 
 ## Configuración de Supabase
 
-La aplicación está configurada para conectarse a Supabase con las siguientes credenciales:
+La aplicación utiliza variables de entorno para conectarse a Supabase. Crea un archivo `.env` (o configura las variables en tu entorno) con:
 
-```javascript
-const SUPABASE_URL = 'https://kehpwxdkpdxapfxwhfwn.supabase.co'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+```bash
+VITE_SUPABASE_URL="https://tu-proyecto.supabase.co"
+VITE_SUPABASE_ANON_KEY="tu_anon_key"
 ```
 
 ### Estructura de Base de Datos Esperada
@@ -94,7 +94,7 @@ La aplicación espera las siguientes tablas en Supabase:
    ```
 
 3. **Configurar variables de entorno**
-   - Actualizar las credenciales de Supabase en `src/App.jsx`
+   - Crea un archivo `.env` con `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`
 
 4. **Ejecutar en desarrollo**
    ```bash
